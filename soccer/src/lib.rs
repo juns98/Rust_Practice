@@ -5,6 +5,12 @@ mod players {
         pub name: String,
         pub age: i8,
     }
+    pub struct Strength {
+        pub kick: u32,
+        pub pass: u32,
+        pub speed: u32,
+        pub stamina: u32,
+    }
     impl Status {
         pub fn junior (name: &str, age: i8) -> Status {
             Status { name: String::from(name), age: i8::from(age) }
@@ -30,9 +36,27 @@ mod players {
     }
 }
 
+use rand::Rng;
+
 //bring path 
 use self::players:: {attacker, midfielder, defender };
-use self::players::Status;
+use self::players:: {Status, Strength};
+
+pub fn init_player() {
+    let kick = rand::thread_rng().gen_range(1..=100);
+    let pass = rand::thread_rng().gen_range(1..=100);
+    let speed = rand::thread_rng().gen_range(1..=100);
+    let stamina = rand::thread_rng().gen_range(1..=100);
+
+    let temp_player = Strength {
+        kick: kick,
+        pass: pass,
+        speed: speed,
+        stamina: stamina,
+    };
+    println!("Player info: kick {} pass {} speed {} stamina {}", temp_player.kick, temp_player.pass, temp_player.speed, temp_player.stamina);
+}
+
 
 pub fn play_game() {
     // Absolute path
@@ -44,7 +68,8 @@ pub fn play_game() {
     midfielder::take_pass("kim");
     defender::take_tackle("park");
 
-    let playerOneStatus = Status::junior("kim", 13);
+    let player_One_Status = Status::junior("kim", 13);
     let playerTwoStatus = Status::senior("baek", 25);
-    println!("{} {}",playerOneStatus.name, playerOneStatus.age);
+    
+    println!("{} {}",player_One_Status.name, player_One_Status.age);
 }
