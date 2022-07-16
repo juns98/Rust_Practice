@@ -31,7 +31,7 @@ mod players {
 }
 
 //bring path 
-use self::players::attacker;
+use self::players:: {attacker, midfielder, defender };
 use self::players::Status;
 
 pub fn play_game() {
@@ -41,7 +41,10 @@ pub fn play_game() {
     players::attacker::take_shot("Son");
     // use 
     attacker::take_shot("Son");
+    midfielder::take_pass("kim");
+    defender::take_tackle("park");
 
     let playerOneStatus = Status::junior("kim", 13);
     let playerTwoStatus = Status::senior("baek", 25);
+    println!("{} {}",playerOneStatus.name, playerOneStatus.age);
 }
