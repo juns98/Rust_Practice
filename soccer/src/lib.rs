@@ -36,30 +36,18 @@ mod players {
     }
 }
 
-use rand::Rng;
+mod player;
 
 //bring path 
 use self::players:: {attacker, midfielder, defender };
 use self::players:: {Status, Strength};
-
-pub fn init_player() {
-    let kick = rand::thread_rng().gen_range(1..=100);
-    let pass = rand::thread_rng().gen_range(1..=100);
-    let speed = rand::thread_rng().gen_range(1..=100);
-    let stamina = rand::thread_rng().gen_range(1..=100);
-
-    let temp_player = Strength {
-        kick: kick,
-        pass: pass,
-        speed: speed,
-        stamina: stamina,
-    };
-    println!("Player info: kick {} pass {} speed {} stamina {}", temp_player.kick, temp_player.pass, temp_player.speed, temp_player.stamina);
-}
+use crate::player::init_player;
 
 
 pub fn play_game() {
     // Absolute path
+    init_player();
+
     crate::players::attacker::take_shot("Son");
     // Relative path
     players::attacker::take_shot("Son");
@@ -70,6 +58,6 @@ pub fn play_game() {
 
     let player_One_Status = Status::junior("kim", 13);
     let playerTwoStatus = Status::senior("baek", 25);
-    
+
     println!("{} {}",player_One_Status.name, player_One_Status.age);
 }

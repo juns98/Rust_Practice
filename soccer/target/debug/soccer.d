@@ -1,1 +1,1 @@
-/mnt/c/users/samsung/OneDrive/Documents/GitHub/Rust_Practice/soccer/target/debug/soccer: /mnt/c/users/samsung/OneDrive/Documents/GitHub/Rust_Practice/soccer/src/lib.rs /mnt/c/users/samsung/OneDrive/Documents/GitHub/Rust_Practice/soccer/src/main.rs
+/mnt/c/users/samsung/OneDrive/Documents/GitHub/Rust_Practice/soccer/target/debug/soccer: /mnt/c/users/samsung/OneDrive/Documents/GitHub/Rust_Practice/soccer/src/lib.rs /mnt/c/users/samsung/OneDrive/Documents/GitHub/Rust_Practice/soccer/src/main.rs /mnt/c/users/samsung/OneDrive/Documents/GitHub/Rust_Practice/soccer/src/player.rs

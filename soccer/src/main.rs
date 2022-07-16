@@ -1,6 +1,5 @@
-use soccer::{play_game, init_player};
+use soccer::play_game;
 
 fn main() {
-    init_player();
     play_game();
 }
