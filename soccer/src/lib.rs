@@ -49,7 +49,8 @@ mod player_module {
 
 mod player;
 // use core::num;
-use std::io::stdin;
+use std::io::{stdin,Read};
+use std::io;
 
 use rand::Error;
 
@@ -57,7 +58,6 @@ use rand::Error;
 // use self::player_module:: {attacker, midfielder, defender };
 use self::player_module:: {Status, Strength, Position};
 use crate::player::init_player;
-
 
 pub fn play_game() {
     // Absolute path
@@ -68,19 +68,19 @@ pub fn play_game() {
         let mut tempAge = String::new();
         let mut position = String::new();
         println!("Enter name: ");
-        let _len_name = stdin().read_line(&mut name);
+        let _len_name = stdin().read_line(&mut name).expect("Failed to readline");
         println!("Enter age: ");
         let _len_age = stdin().read_line(&mut tempAge);
         let age = tempAge.trim().parse().expect("input not integer");
         println!("Enter Position(only FW, MF, DF): ");
-        let _len_pos = stdin().read_line(&mut position);
+        let mut _len_pos = stdin().read_line(&mut position);
+        while !position.trim().eq("FW") && !position.trim().eq("MF") && !position.trim().eq("DF") && !position.trim().eq("GK"){
+            println!("{}, {}", &position.trim(), &position.trim().eq("FW"));
+            position = String::from("");
+            println!("Enter Position(only FW, MF, DF): ");
+            _len_pos = stdin().read_line(&mut position);
+        }
         
-        // 해결하기
-
-        // let check_position =  match position {
-        //     Err(Error) => panic!("Not proper position: {}", Error);
-        // }
-
         players.push(init_player(&name, age, &position))
     }
 
