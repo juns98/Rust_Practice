@@ -1,60 +1,84 @@
-pub struct NewsArticle {
-    pub headline: String,
-    pub location: String,
-    pub author: String,
-    pub content: String,
+trait Player {
+    fn get_player_name(&self);
+    fn get_player_num(&self);
+    fn common_function() {
+        println!("This is common function");
+    }
+    fn get_special_trait(&self);
 }
 
-impl Summarizable for NewsArticle {
-    fn summary(&self) -> String {
-        format!("{}, by {} ({})", self.headline, self.author, self.location)
+struct Forward<T, U> {
+    number: u8,
+    name: T,
+    goals: U,
+}
+struct Midfielder<T,U> {
+    number: u8,
+    name: T,
+    assits: U,
+}
+struct Defender<T,U> {
+    number: u8,
+    name: T,
+    tackles: U,
+}
+
+// 어떻게 바꿔야 할 지 모르겠습니다...
+impl<T,U> Player for Forward<T,U> {
+    fn get_player_name(&self) {
+        println!("name: {}", self.name) ;
+    }
+    fn get_player_num(&self) {
+        println!("number: {}", self.number);
+    }
+    fn get_special_trait(&self) {
+        println!("goal: {}", self.goals);
     }
 }
-
-pub struct Tweet {
-    pub username: String,
-    pub content: String,
-    pub reply: bool,
-    pub retweet: bool,
-}
-
-impl Summarizable for Tweet {
-    fn summary(&self) -> String {
-        format!("{}: {}", self.username, self.content)
+impl<T,U> Player for Midfielder<T,U> {
+    fn get_player_name(&self) {
+        println!("name: {}", self.name);
+    }
+    fn get_player_num(&self) {
+        println!("number: {}", self.number);
+    }
+    fn get_special_trait(&self) {
+        println!("goal: {}", self.assits);
     }
 }
-
-struct Point<T, U> {
-    x: T,
-    y: U,
-}
-
-impl<T, U> Point<T, U> {
-    fn mixup<V, W>(self, other: Point<V, W>) -> Point<T, W> {
-        Point {
-            x: self.x,
-            y: other.y,
-        }
+impl<T,U> Player for Defender<T,U> {
+    fn get_player_name(&self) {
+        println!("name: {}", self.name);
+    }
+    fn get_player_num(&self) {
+        println!("number: {}", self.number);
+    }
+    fn get_special_trait(&self) {
+        println!("goal: {}", self.tackles);
     }
 }
-
-use chap10::Summarizable;
 
 fn main() {
-    let p1 = Point { x: 5, y: 10.4 };
-    let p2 = Point { x: "Hello", y: 'c'};
-
-    let p3 = p1.mixup(p2);
-
-    println!("p3.x = {}, p3.y = {}", p3.x, p3.y);
-
-    let tweet = Tweet {
-        username: String::from("me"),
-        content: String::from("hello"),
-        reply: false,
-        retweet: false,
+    //goal에 int가 들어감
+    let player1 = Forward {
+        number: 10,
+        name: String::from("kim"),
+        goals: 18,
     };
 
-    println!("1 new tweet: {}", tweet.summary());
-   
+    //goal 에 string이 들어감
+    let player2 = Forward {
+        number: 10,
+        name: String::from("kim"),
+        goals: String::from("none"),
+    };
+    
+    player1.get_player_num();
+    player1.get_player_name();
+    player1.get_special_trait();
+
+    player2.get_player_num();
+    player2.get_player_name();
+    player2.get_special_trait();
+
 }
